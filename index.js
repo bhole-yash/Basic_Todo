@@ -26,3 +26,30 @@ addTaskBtn.addEventListener("click", function () {
     newTaskInput.value = "";
   }
 });
+
+newTaskInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    const newTaskText = newTaskInput.value.trim();
+  if (newTaskText) {
+    const newTask = document.createElement("li");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.addEventListener("change", function () {
+      this.parentNode.classList.toggle("completed");
+    });
+    const taskText = document.createElement("span");
+    taskText.innerText = newTaskText;
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerText = "X";
+    deleteBtn.addEventListener("click", function () {
+      this.parentNode.remove();
+    });
+    newTask.appendChild(checkbox);
+    newTask.appendChild(taskText);
+    newTask.appendChild(deleteBtn);
+    todoList.appendChild(newTask);
+    newTaskInput.value = "";
+  }
+      }
+});
